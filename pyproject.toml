@@ -7,9 +7,15 @@ dependencies = []
 [dependency-groups]
 dev = [
     "detect-secrets>=1.5.0",
+    "pip-audit>=2.10.1",
     "pre-commit>=4.6.2",
     "pytest>=9.1.1",
+    "pytest-socket>=0.8.1",
     "ruff>=0.16.10",
+]
+specs = [
+    "jsonschema>=4.26.0",
+    "referencing>=0.37.0",
 ]
 
 [tool.ruff]
@@ -24,4 +30,16 @@ select = [
     "UP",
     "B",
     "SIM",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "--import-mode=importlib --strict-config --strict-markers --disable-socket -ra"
+required_plugins = ["pytest-socket>=0.8.1"]
+markers = [
+    "contracts: schemas, examples, prompts and reference contract assertions",
+    "unit: focused behavior of implemented code",
+    "integration: implemented components working together without live services",
+    "live: explicitly opted-in tests against real development services",
 ]
