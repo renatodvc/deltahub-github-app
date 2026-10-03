@@ -7,7 +7,7 @@ uv sync --locked --group specs
 uv run --locked --group specs python -m pytest
 ```
 
-Use a path or `-k` to focus on a change. Run the full offline suite before handoff. CI runs this same suite plus Ruff. A passing suite currently proves the contracts and local tooling; the worker has not been implemented.
+Use a path or `-k` to focus on a change. Run the full offline suite before handoff. CI runs this same suite plus Ruff. A passing suite currently checks the documented examples, representative contract invariants and local tooling; it does not prove the entire design or worker behavior. The worker has not been implemented. The reviewer's prohibition on rerunning CI applies to repositories it reviews, not to the team running this worker's own development tests.
 
 ## Where a test belongs
 
