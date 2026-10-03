@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.deltahub.invalid/ai-review/v0.1/report-coordination.schema.json",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "review_id": {
+      "type": "string"
+    },
+    "last_saved_revision": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "active_reservation": {
+      "anyOf": [
+        {
+          "$ref": "common.schema.json#/$defs/report_reservation"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "recovery": {
+      "anyOf": [
+        {
+          "$ref": "common.schema.json#/$defs/reservation_recovery_claim"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "last_completed_revision": {
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "review_id",
+    "last_saved_revision",
+    "active_reservation",
+    "recovery",
+    "last_completed_revision"
+  ],
+  "additionalProperties": false
+}

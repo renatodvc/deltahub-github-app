@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.deltahub.invalid/ai-review/v0.1/verifier-output.schema.json",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "enum": [
+        "0.1.0"
+      ],
+      "type": "string"
+    },
+    "assessments": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/agent_assessment"
+      }
+    },
+    "final_replies": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/final_reply"
+      },
+      "description": "Final replies consistent with the independent assessments, covering every required target in either mode. Empty only when there are no targets."
+    },
+    "closure_assessments": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/closure_assessment"
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "assessments",
+    "final_replies",
+    "closure_assessments"
+  ],
+  "additionalProperties": false
+}

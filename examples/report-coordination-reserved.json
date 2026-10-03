@@ -1,0 +1,16 @@
+{
+  "schema_version": "0.1.0",
+  "review_id": "review-1",
+  "last_saved_revision": 1,
+  "active_reservation": {
+    "reservation_id": "review-1-reservation-2",
+    "request_id": "request-1",
+    "job_id": "job-retry-1",
+    "execution_id": "cloud-run-retry-1",
+    "report_revision": 2,
+    "expected_report_revision": 1,
+    "report_uri": "gs://example-private-review/review-1/reports/2.json"
+  },
+  "recovery": null,
+  "last_completed_revision": null
+}

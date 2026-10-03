@@ -1,0 +1,65 @@
+{
+  "schema_version": "0.1.0",
+  "assessments": [
+    {
+      "candidate_id": "c1",
+      "status": "valid",
+      "reason": "The conversion exception escapes the handler in the reviewed source.",
+      "evidence": [
+        {
+          "kind": "code",
+          "explanation": "The new endpoint converts untrusted text with int() without handling ValueError.",
+          "source_ids": [
+            "code-head"
+          ],
+          "location": {
+            "path": "app/views.py",
+            "start_line": 21,
+            "end_line": 23,
+            "side": "RIGHT",
+            "revision_role": "head"
+          },
+          "artifact_id": null
+        }
+      ],
+      "missing_evidence": [],
+      "resolution_needed": null,
+      "suggestion_assessment": "not_provided",
+      "invalid_reason": null
+    }
+  ],
+  "final_replies": [
+    {
+      "finding_id": "finding-11111111-1111-4111-8111-111111111111",
+      "source_comment_ids": [
+        "author-reply"
+      ],
+      "body": "The original technical issue remains, but no relevant circumstances changed. The human dismissal remains in effect.",
+      "reply_target_id": "reply-finding-11111111-1111-4111-8111-111111111111"
+    }
+  ],
+  "closure_assessments": [
+    {
+      "finding_id": "finding-11111111-1111-4111-8111-111111111111",
+      "relevant_change_confirmed": false,
+      "reason": "The issue exists, but the previous human override still applies.",
+      "evidence": [
+        {
+          "kind": "code",
+          "explanation": "The new endpoint converts untrusted text with int() without handling ValueError.",
+          "source_ids": [
+            "code-head"
+          ],
+          "location": {
+            "path": "app/views.py",
+            "start_line": 21,
+            "end_line": 23,
+            "side": "RIGHT",
+            "revision_role": "head"
+          },
+          "artifact_id": null
+        }
+      ]
+    }
+  ]
+}

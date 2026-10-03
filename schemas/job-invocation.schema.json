@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.deltahub.invalid/ai-review/v0.1/job-invocation.schema.json",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "job_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "request_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "job_lineage": {
+      "$ref": "common.schema.json#/$defs/job_lineage"
+    },
+    "payload_uri": {
+      "type": "string",
+      "pattern": "^gs://[^/]+/.+"
+    },
+    "payload_generation": {
+      "type": "string",
+      "pattern": "^[0-9]+$"
+    }
+  },
+  "required": [
+    "schema_version",
+    "job_id",
+    "request_id",
+    "job_lineage",
+    "payload_uri",
+    "payload_generation"
+  ],
+  "additionalProperties": false
+}

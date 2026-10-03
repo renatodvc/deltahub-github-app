@@ -1,0 +1,44 @@
+{
+  "schema_version": "0.1.0",
+  "event_id": "event-check",
+  "job_id": "job-1",
+  "request_id": "request-1",
+  "review_id": "review-1",
+  "execution_id": "cloud-run-execution-1",
+  "attempt_id": "attempt-1",
+  "sequence": 2,
+  "occurred_at": "2026-10-01T12:00:00Z",
+  "kind": "check_registered",
+  "stage_id": null,
+  "message": "Check identity checkpointed before agent work.",
+  "expected_report_revision": null,
+  "report": null,
+  "report_artifact": null,
+  "failure": null,
+  "quota_wait": null,
+  "job_lineage": {
+    "original_job_id": "job-1",
+    "retry_of_job_id": null
+  },
+  "checkpoint": {
+    "artifact_id": "check-registration",
+    "kind": "checkpoint",
+    "uri": "gs://example-private-review/review-1/jobs/job-1/check-registration.json",
+    "generation": "1",
+    "sha256": "3333333333333333333333333333333333333333333333333333333333333333",
+    "content_type": "application/json"
+  },
+  "stop": null,
+  "check": {
+    "check_run_id": "200",
+    "repository": "example-org/example-service",
+    "pr_number": 42,
+    "head_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "base_sha": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "review_id": "review-1",
+    "owner_job_id": "job-1",
+    "owner_execution_id": "cloud-run-execution-1",
+    "url": "https://github.com/example-org/example-service/runs/200"
+  },
+  "context_change": null
+}

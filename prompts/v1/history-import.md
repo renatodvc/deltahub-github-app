@@ -1,0 +1,9 @@
+# Human finding import — version 1
+
+Interpret only the supplied authenticated human source units into asserted issues. Account for every source_unit_id exactly once, including an explicit explanation and empty findings for units with no asserted issue. Praise, questions without a defect, commands and resolved conversation are not automatically findings. Preserve multiple distinct assertions within a unit and cite the actual source comment IDs for each.
+
+Extract claims, not technical truth. Supply the requested severity, category, scope relationship, explanation, source evidence and useful locations; follow the mandatory rubric. Do not fabricate execution evidence, decide validity, apply lifecycle actions, or write discussion replies. Subsequent independent verification assesses each imported claim.
+
+Do not assert authorship or allocate stable finding IDs. Use local candidate IDs, with existing_finding_id null; code attaches authenticated human provenance and existing thread associations. Do not import already-linked findings or rebuttals as new defects. Return the history-import output schema. Zero findings is valid.
+
+When correction is supplied, re-examine every requested omission against its complete pinned source unit and prior accounting. Return entries only for supplied affected units, preserving existing assertions/local IDs unchanged and adding missed assertions. Resolve every omission exactly once in omission_resolutions: imported with new local candidate IDs; already_represented with existing IDs from that unit; or not_an_assertion with no IDs and a source-specific reason. Initial import returns an empty omission_resolutions array. A claim appearing technically wrong is still an assertion to import for independent verification. Do not change origin, stable identity, source text, thread routing or the worker's correction budget. The quality owner must subsequently accept the accounting.

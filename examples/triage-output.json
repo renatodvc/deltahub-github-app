@@ -1,0 +1,37 @@
+{
+  "schema_version": "0.1.0",
+  "rationale": "Small API change requires security coverage and complete quality control. Two perspectives are useful.",
+  "assignments": [
+    {
+      "model": {
+        "model": "example-review-model",
+        "effort": "high"
+      },
+      "owns_quality_control": false,
+      "scope": "New endpoint and affected call path.",
+      "instructions": "Inspect correctness and security. Do not rerun CI. Zero findings are allowed.",
+      "rationale": "Externally supplied input affects a new endpoint.",
+      "mandatory_lens_ids": [
+        "security"
+      ],
+      "perspectives": [
+        "correctness"
+      ]
+    },
+    {
+      "model": {
+        "model": "example-review-model",
+        "effort": "high"
+      },
+      "owns_quality_control": true,
+      "scope": "Full quality checklist and new endpoint.",
+      "instructions": "Assess Jira requirements and all mandatory quality checks. Zero findings are allowed.",
+      "rationale": "Verify scope and handling of invalid identifiers.",
+      "mandatory_lens_ids": [],
+      "perspectives": [
+        "quality_control",
+        "correctness"
+      ]
+    }
+  ]
+}

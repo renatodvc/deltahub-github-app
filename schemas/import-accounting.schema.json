@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.deltahub.invalid/ai-review/v0.1/import-accounting.schema.json",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "accounting_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "source_units": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/source_unit"
+      }
+    },
+    "result": {
+      "$ref": "history-import-output.schema.json"
+    },
+    "finding_bindings": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/import_binding"
+      }
+    },
+    "corrections": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/import_correction_record"
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "accounting_id",
+    "revision",
+    "source_units",
+    "result",
+    "finding_bindings",
+    "corrections"
+  ],
+  "additionalProperties": false
+}

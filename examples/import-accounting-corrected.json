@@ -1,0 +1,128 @@
+{
+  "schema_version": "0.1.0",
+  "accounting_id": "human-import-accounting",
+  "revision": 2,
+  "source_units": [
+    {
+      "source_unit_id": "human-bug",
+      "comment_source_ids": [
+        "human-bug"
+      ]
+    },
+    {
+      "source_unit_id": "human-praise",
+      "comment_source_ids": [
+        "human-praise"
+      ]
+    }
+  ],
+  "result": {
+    "schema_version": "0.1.0",
+    "entries": [
+      {
+        "source_unit_id": "human-bug",
+        "findings": [
+          {
+            "candidate_id": "import-1",
+            "title": "Invalid numeric identifiers return a server error.",
+            "body": "An invalid identifier reaches int() without error handling. The resulting ValueError escapes the endpoint and returns HTTP 500 instead of the required HTTP 400.",
+            "severity": "major",
+            "category": "correctness",
+            "relationship": "pr_related",
+            "locations": [
+              {
+                "path": "app/views.py",
+                "start_line": 21,
+                "end_line": 23,
+                "side": "RIGHT",
+                "revision_role": "head"
+              }
+            ],
+            "evidence": [
+              {
+                "kind": "discussion",
+                "explanation": "Human reviewer asserts that unhandled ValueError produces a server error; this is an assertion awaiting verification.",
+                "source_ids": [
+                  "human-bug"
+                ],
+                "location": null,
+                "artifact_id": null
+              }
+            ],
+            "suggestion": null,
+            "primary_location": {
+              "path": "app/views.py",
+              "start_line": 21,
+              "end_line": 23,
+              "side": "RIGHT",
+              "revision_role": "head"
+            },
+            "rule_id": null,
+            "existing_finding_id": null
+          }
+        ],
+        "explanation": "One concrete asserted correctness defect."
+      },
+      {
+        "source_unit_id": "human-praise",
+        "findings": [],
+        "explanation": "Praise without an asserted defect."
+      }
+    ],
+    "limitations": [],
+    "omission_resolutions": [
+      {
+        "omission_id": "missed-1",
+        "outcome": "imported",
+        "candidate_ids": [
+          "import-1"
+        ],
+        "reason": "The authenticated comment asserts the failure; import it for independent verification."
+      }
+    ]
+  },
+  "finding_bindings": [
+    {
+      "source_unit_id": "human-bug",
+      "import_candidate_id": "import-1",
+      "finding_id": "finding-22222222-2222-4222-8222-222222222222"
+    }
+  ],
+  "corrections": [
+    {
+      "pass_number": 1,
+      "prior_accounting": {
+        "artifact_id": "import-accounting-missed",
+        "kind": "import_accounting",
+        "uri": "gs://example-private-review/artifacts/import-accounting-missed.json",
+        "generation": "1",
+        "sha256": "debe80322499dbbbc11ca543d9ceb50f097c13b0034e8d578edd6d1cd369616b",
+        "content_type": "application/json"
+      },
+      "reviewer_output": {
+        "artifact_id": "import-omission-reviewer-output",
+        "kind": "checkpoint",
+        "uri": "gs://example-private-review/artifacts/import-omission-reviewer-output.json",
+        "generation": "1",
+        "sha256": "4c6fc0dce7d063ee4c485d87449b5d024a512741c15c3834358e3d473ba6c935",
+        "content_type": "application/json"
+      },
+      "import_input": {
+        "artifact_id": "history-import-correction-input",
+        "kind": "checkpoint",
+        "uri": "gs://example-private-review/artifacts/history-import-correction-input.json",
+        "generation": "1",
+        "sha256": "dbd10c4a8129d7a4fdc074442b9a39f8011058f1600bb0446ab0957a1c77fe65",
+        "content_type": "application/json"
+      },
+      "import_output": {
+        "artifact_id": "history-import-correction-output",
+        "kind": "checkpoint",
+        "uri": "gs://example-private-review/artifacts/history-import-correction-output.json",
+        "generation": "1",
+        "sha256": "afd1f2cb4da2ccba5537aa8581a719d4cdd19b0e204a3b1fa3b8a44283d9b7a0",
+        "content_type": "application/json"
+      }
+    }
+  ]
+}

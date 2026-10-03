@@ -1,0 +1,627 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.deltahub.invalid/ai-review/v0.1/review-report.schema.json",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "job_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "request_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "review_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "attempt_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "report_revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "review",
+        "discussion"
+      ]
+    },
+    "input": {
+      "type": "object",
+      "properties": {
+        "payload": {
+          "$ref": "common.schema.json#/$defs/artifact"
+        },
+        "input_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "payload",
+        "input_sha256"
+      ],
+      "additionalProperties": false
+    },
+    "target": {
+      "$ref": "common.schema.json#/$defs/target"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "review_status": {
+      "type": "string",
+      "enum": [
+        "completed",
+        "failed",
+        "stopped"
+      ]
+    },
+    "verdict": {
+      "anyOf": [
+        {
+          "type": "string",
+          "enum": [
+            "approved",
+            "requires_changes"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "failure": {
+      "anyOf": [
+        {
+          "$ref": "common.schema.json#/$defs/failure"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "triage": {
+      "anyOf": [
+        {
+          "$ref": "triage-output.schema.json"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "stages": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/stage"
+      },
+      "minItems": 0
+    },
+    "raw_findings": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/raw_finding"
+      },
+      "minItems": 0
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/canonical_finding"
+      },
+      "minItems": 0
+    },
+    "quality_checks": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/quality_control_record"
+      },
+      "minItems": 0
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/limitation"
+      },
+      "minItems": 0
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/source"
+      },
+      "minItems": 0
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/artifact"
+      },
+      "minItems": 0
+    },
+    "stats": {
+      "$ref": "common.schema.json#/$defs/stats"
+    },
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "worker_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "image_digest": {
+          "type": "string",
+          "minLength": 1
+        },
+        "codex_sdk_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "codex_runtime_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "config_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "prompts": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/resolved_prompt"
+          },
+          "minItems": 0
+        },
+        "runtime_profile": {
+          "type": "string",
+          "minLength": 1
+        },
+        "python_version": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "worker_version",
+        "image_digest",
+        "codex_sdk_version",
+        "codex_runtime_version",
+        "config_version",
+        "prompts",
+        "runtime_profile",
+        "python_version"
+      ],
+      "additionalProperties": false
+    },
+    "publication": {
+      "$ref": "common.schema.json#/$defs/publication"
+    },
+    "execution_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "review_context": {
+      "anyOf": [
+        {
+          "$ref": "common.schema.json#/$defs/review_context"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "resolved_assignments": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/resolved_assignment"
+      },
+      "minItems": 0
+    },
+    "finding_actions": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/finding_action"
+      },
+      "minItems": 0
+    },
+    "history_ledger": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/history_ledger_item"
+      }
+    },
+    "job_lineage": {
+      "$ref": "common.schema.json#/$defs/job_lineage"
+    },
+    "execution_status": {
+      "type": "string",
+      "enum": [
+        "completed",
+        "failed",
+        "stopped"
+      ]
+    },
+    "stop": {
+      "anyOf": [
+        {
+          "$ref": "common.schema.json#/$defs/stop"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "revision_reason": {
+      "type": "string",
+      "enum": [
+        "initial",
+        "discussion",
+        "delivery_update",
+        "execution_retry"
+      ]
+    },
+    "dismissals": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/dismissal_command"
+      }
+    },
+    "reservation": {
+      "$ref": "common.schema.json#/$defs/report_reservation"
+    },
+    "delivery_failure": {
+      "anyOf": [
+        {
+          "allOf": [
+            {
+              "$ref": "common.schema.json#/$defs/failure"
+            },
+            {
+              "properties": {
+                "code": {
+                  "enum": [
+                    "github_access_denied",
+                    "github_delivery_failed",
+                    "deltahub_delivery_failed",
+                    "artifact_io_failed",
+                    "execution_timeout",
+                    "revision_conflict",
+                    "upstream_unavailable",
+                    "execution_lost"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "closure_assessments": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/closure_assessment"
+      }
+    },
+    "reply_targets": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/reply_target"
+      }
+    },
+    "required_stage_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "computation_plan": {
+      "anyOf": [
+        {
+          "$ref": "common.schema.json#/$defs/artifact"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "context_changes": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/authoritative_context_change"
+      }
+    },
+    "technical_discussion_finding_ids": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/finding_id"
+      },
+      "uniqueItems": true
+    },
+    "import_accounting": {
+      "anyOf": [
+        {
+          "$ref": "common.schema.json#/$defs/artifact"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "job_id",
+    "request_id",
+    "review_id",
+    "attempt_id",
+    "report_revision",
+    "mode",
+    "input",
+    "target",
+    "created_at",
+    "review_status",
+    "verdict",
+    "failure",
+    "triage",
+    "stages",
+    "raw_findings",
+    "findings",
+    "quality_checks",
+    "limitations",
+    "sources",
+    "artifacts",
+    "stats",
+    "provenance",
+    "publication",
+    "execution_id",
+    "review_context",
+    "resolved_assignments",
+    "finding_actions",
+    "history_ledger",
+    "job_lineage",
+    "execution_status",
+    "stop",
+    "revision_reason",
+    "dismissals",
+    "reservation",
+    "delivery_failure",
+    "closure_assessments",
+    "reply_targets",
+    "required_stage_ids",
+    "computation_plan",
+    "context_changes",
+    "technical_discussion_finding_ids",
+    "import_accounting"
+  ],
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "review_status": {
+            "const": "completed"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "verdict": {
+            "type": "string",
+            "enum": [
+              "approved",
+              "requires_changes"
+            ]
+          },
+          "failure": {
+            "type": "null"
+          },
+          "review_context": {
+            "type": "object"
+          },
+          "findings": {
+            "items": {
+              "properties": {
+                "verification": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "target": {
+            "required": [
+              "merge_base_sha"
+            ]
+          },
+          "computation_plan": {
+            "type": "object"
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "verdict": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "review_status": {
+            "const": "failed"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "failure": {
+            "type": "object"
+          },
+          "execution_status": {
+            "const": "failed"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "execution_status": {
+            "const": "stopped"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "stop": {
+            "type": "object"
+          },
+          "review_status": {
+            "enum": [
+              "stopped",
+              "completed"
+            ]
+          },
+          "failure": {
+            "type": "null"
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "stop": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "review_status": {
+            "const": "stopped"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "execution_status": {
+            "const": "stopped"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "execution_status": {
+            "const": "completed"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "review_status": {
+            "const": "completed"
+          },
+          "publication": {
+            "properties": {
+              "status": {
+                "const": "complete"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "review_status": {
+            "const": "completed"
+          },
+          "execution_status": {
+            "const": "failed"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "delivery_failure": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "execution_status": {
+            "enum": [
+              "completed",
+              "stopped"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "delivery_failure": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "review_status": {
+            "enum": [
+              "failed",
+              "stopped"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "delivery_failure": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "mode": {
+            "const": "review"
+          },
+          "review_status": {
+            "const": "completed"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "import_accounting": {
+            "$ref": "common.schema.json#/$defs/artifact"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "schema_version": "0.1.0",
+  "summary": "No actionable issues found in the assigned scope.",
+  "findings": [],
+  "limitations": [],
+  "quality_control": {
+    "built_in": {
+      "scope": {
+        "result": "pass",
+        "explanation": "No violation found in the PR changes.",
+        "evidence": [],
+        "candidate_ids": []
+      },
+      "requirements": {
+        "result": "finding",
+        "explanation": "Invalid identifier handling does not meet the Jira requirement.",
+        "evidence": [
+          {
+            "kind": "requirement",
+            "explanation": "Jira explicitly requires HTTP 400 for invalid numeric identifiers.",
+            "source_ids": [
+              "jira-description"
+            ],
+            "location": null,
+            "artifact_id": null
+          }
+        ],
+        "candidate_ids": [
+          "r2-c1"
+        ]
+      },
+      "previous_findings": {
+        "result": "unverifiable",
+        "explanation": "A human assertion is missing from the ledger; import correction must finish.",
+        "evidence": [],
+        "candidate_ids": []
+      },
+      "english": {
+        "result": "pass",
+        "explanation": "No violation found in the PR changes.",
+        "evidence": [],
+        "candidate_ids": []
+      },
+      "internal_references": {
+        "result": "pass",
+        "explanation": "No violation found in the PR changes.",
+        "evidence": [],
+        "candidate_ids": []
+      }
+    },
+    "custom_rules": [],
+    "closed_finding_decisions": [],
+    "import_accounting_revision": 1,
+    "import_omissions": [
+      {
+        "omission_id": "missed-1",
+        "source_unit_id": "human-bug",
+        "comment_source_ids": [
+          "human-bug"
+        ],
+        "assertion": "The human asserts that an invalid numeric identifier produces HTTP 500 instead of HTTP 400.",
+        "reason": "The import recorded no assertion, but the comment describes a concrete failure."
+      }
+    ]
+  }
+}

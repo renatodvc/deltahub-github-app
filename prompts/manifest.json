@@ -1,0 +1,40 @@
+{
+  "bundle_version": "1",
+  "policy": {
+    "prompt_id": "mandatory-review-policy",
+    "version": "1",
+    "path": "v1/mandatory.md"
+  },
+  "roles": {
+    "triage": {
+      "prompt_id": "triage-default",
+      "version": "1",
+      "path": "v1/triage.md"
+    },
+    "reviewer": {
+      "prompt_id": "reviewer-default",
+      "version": "1",
+      "path": "v1/reviewer.md"
+    },
+    "deduplication": {
+      "prompt_id": "deduplication-default",
+      "version": "1",
+      "path": "v1/deduplication.md"
+    },
+    "verification": {
+      "prompt_id": "verification-default",
+      "version": "1",
+      "path": "v1/verification.md"
+    },
+    "discussion": {
+      "prompt_id": "discussion-default",
+      "version": "1",
+      "path": "v1/discussion.md"
+    },
+    "history_import": {
+      "prompt_id": "history-import-default",
+      "version": "1",
+      "path": "v1/history-import.md"
+    }
+  }
+}

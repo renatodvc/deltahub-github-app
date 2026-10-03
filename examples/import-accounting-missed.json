@@ -1,0 +1,38 @@
+{
+  "schema_version": "0.1.0",
+  "accounting_id": "human-import-accounting",
+  "revision": 1,
+  "source_units": [
+    {
+      "source_unit_id": "human-bug",
+      "comment_source_ids": [
+        "human-bug"
+      ]
+    },
+    {
+      "source_unit_id": "human-praise",
+      "comment_source_ids": [
+        "human-praise"
+      ]
+    }
+  ],
+  "result": {
+    "schema_version": "0.1.0",
+    "entries": [
+      {
+        "source_unit_id": "human-bug",
+        "findings": [],
+        "explanation": "Initially misclassified as a question without an assertion."
+      },
+      {
+        "source_unit_id": "human-praise",
+        "findings": [],
+        "explanation": "Praise without an asserted defect."
+      }
+    ],
+    "limitations": [],
+    "omission_resolutions": []
+  },
+  "finding_bindings": [],
+  "corrections": []
+}

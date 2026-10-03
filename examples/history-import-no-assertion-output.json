@@ -1,0 +1,19 @@
+{
+  "schema_version": "0.1.0",
+  "entries": [
+    {
+      "source_unit_id": "human-praise",
+      "findings": [],
+      "explanation": "Praise without an asserted defect."
+    }
+  ],
+  "limitations": [],
+  "omission_resolutions": [
+    {
+      "omission_id": "praise-question",
+      "outcome": "not_an_assertion",
+      "candidate_ids": [],
+      "reason": "The entire supplied comment is praise and identifies no defect."
+    }
+  ]
+}

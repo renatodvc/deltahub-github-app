@@ -1,0 +1,39 @@
+{
+  "schema_version": "0.1.0",
+  "review_id": "review-1",
+  "last_saved_revision": 1,
+  "active_reservation": {
+    "reservation_id": "review-1-reservation-2",
+    "request_id": "request-discussion-stopped",
+    "job_id": "job-discussion-stopped",
+    "execution_id": "cloud-run-discussion-stopped",
+    "report_revision": 2,
+    "expected_report_revision": 1,
+    "report_uri": "gs://example-private-review/review-1/reports/2.json"
+  },
+  "recovery": {
+    "recovery_id": "recovery-1",
+    "recovery_job_id": "job-discussion-new",
+    "recovery_execution_id": "cloud-run-discussion-new",
+    "authorization": {
+      "artifact_id": "deltahub-recovery-authorization",
+      "kind": "checkpoint",
+      "uri": "gs://example-private-review/artifacts/deltahub-recovery-authorization.json",
+      "generation": "1",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "content_type": "application/json"
+    },
+    "terminal_evidence": {
+      "artifact_id": "cloud-run-terminal-stop",
+      "kind": "checkpoint",
+      "uri": "gs://example-private-review/artifacts/cloud-run-terminal-stop.json",
+      "generation": "1",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "content_type": "application/json"
+    },
+    "claimed_at": "2026-10-01T12:10:00Z",
+    "predecessor_execution_id": "cloud-run-discussion-stopped",
+    "predecessor_terminal_state": "stopped"
+  },
+  "last_completed_revision": 1
+}

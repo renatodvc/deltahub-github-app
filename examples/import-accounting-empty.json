@@ -1,0 +1,14 @@
+{
+  "schema_version": "0.1.0",
+  "accounting_id": "import-accounting-empty",
+  "revision": 1,
+  "source_units": [],
+  "result": {
+    "schema_version": "0.1.0",
+    "entries": [],
+    "limitations": [],
+    "omission_resolutions": []
+  },
+  "finding_bindings": [],
+  "corrections": []
+}

@@ -1,0 +1,350 @@
+[
+  {
+    "file": "review-request.json",
+    "schema": "../schemas/review-request.schema.json"
+  },
+  {
+    "file": "triage-output.json",
+    "schema": "../schemas/triage-output.schema.json"
+  },
+  {
+    "file": "reviewer-output.json",
+    "schema": "../schemas/reviewer-output.schema.json"
+  },
+  {
+    "file": "reviewer-quality-output.json",
+    "schema": "../schemas/reviewer-output.schema.json"
+  },
+  {
+    "file": "reviewer-empty-output.json",
+    "schema": "../schemas/reviewer-output.schema.json"
+  },
+  {
+    "file": "aggregate-output.json",
+    "schema": "../schemas/aggregate-output.schema.json"
+  },
+  {
+    "file": "verifier-output.json",
+    "schema": "../schemas/verifier-output.schema.json"
+  },
+  {
+    "file": "verifier-unverifiable-output.json",
+    "schema": "../schemas/verifier-output.schema.json"
+  },
+  {
+    "file": "review-report.json",
+    "schema": "../schemas/review-report.schema.json"
+  },
+  {
+    "file": "review-report-unverifiable.json",
+    "schema": "../schemas/review-report.schema.json"
+  },
+  {
+    "file": "review-report-failed.json",
+    "schema": "../schemas/review-report.schema.json"
+  },
+  {
+    "file": "follow-up-request.json",
+    "schema": "../schemas/review-request.schema.json"
+  },
+  {
+    "file": "discussion-request.json",
+    "schema": "../schemas/review-request.schema.json"
+  },
+  {
+    "file": "discussion-output.json",
+    "schema": "../schemas/discussion-output.schema.json"
+  },
+  {
+    "file": "discussion-report.json",
+    "schema": "../schemas/review-report.schema.json"
+  },
+  {
+    "file": "job-event.json",
+    "schema": "../schemas/job-event.schema.json"
+  },
+  {
+    "file": "aggregate-singleton-output.json",
+    "schema": "../schemas/aggregate-output.schema.json"
+  },
+  {
+    "file": "reviewer-custom-rules-output.json",
+    "schema": "../schemas/reviewer-output.schema.json"
+  },
+  {
+    "file": "job-event-failed.json",
+    "schema": "../schemas/job-event.schema.json"
+  },
+  {
+    "file": "triage-input.json",
+    "schema": "../schemas/triage-input.schema.json"
+  },
+  {
+    "file": "reviewer-input.json",
+    "schema": "../schemas/reviewer-input.schema.json"
+  },
+  {
+    "file": "aggregate-input.json",
+    "schema": "../schemas/aggregate-input.schema.json"
+  },
+  {
+    "file": "verifier-input.json",
+    "schema": "../schemas/verifier-input.schema.json"
+  },
+  {
+    "file": "discussion-input.json",
+    "schema": "../schemas/discussion-input.schema.json"
+  },
+  {
+    "file": "follow-up-report.json",
+    "schema": "../schemas/review-report.schema.json"
+  },
+  {
+    "file": "job-event-review-completed.json",
+    "schema": "../schemas/job-event.schema.json"
+  },
+  {
+    "file": "job-invocation.json",
+    "schema": "../schemas/job-invocation.schema.json"
+  },
+  {
+    "file": "retry-invocation.json",
+    "schema": "../schemas/job-invocation.schema.json"
+  },
+  {
+    "file": "delivery-failed-report.json",
+    "schema": "../schemas/review-report.schema.json"
+  },
+  {
+    "file": "delivery-retried-report.json",
+    "schema": "../schemas/review-report.schema.json"
+  },
+  {
+    "file": "stopped-report.json",
+    "schema": "../schemas/review-report.schema.json"
+  },
+  {
+    "file": "job-event-stopped.json",
+    "schema": "../schemas/job-event.schema.json"
+  },
+  {
+    "file": "custom-prompts-request.json",
+    "schema": "../schemas/review-request.schema.json"
+  },
+  {
+    "file": "custom-prompts-reviewer-input.json",
+    "schema": "../schemas/reviewer-input.schema.json"
+  },
+  {
+    "file": "discussion-reassessment-input.json",
+    "schema": "../schemas/discussion-input.schema.json"
+  },
+  {
+    "file": "discussion-reassessment-output.json",
+    "schema": "../schemas/discussion-output.schema.json"
+  },
+  {
+    "file": "discussion-verifier-input.json",
+    "schema": "../schemas/verifier-input.schema.json"
+  },
+  {
+    "file": "discussion-verifier-output.json",
+    "schema": "../schemas/verifier-output.schema.json"
+  },
+  {
+    "file": "history-import-input.json",
+    "schema": "../schemas/history-import-input.schema.json"
+  },
+  {
+    "file": "history-import-output.json",
+    "schema": "../schemas/history-import-output.schema.json"
+  },
+  {
+    "file": "human-import-verifier-input.json",
+    "schema": "../schemas/verifier-input.schema.json"
+  },
+  {
+    "file": "computation-retried-report.json",
+    "schema": "../schemas/review-report.schema.json"
+  },
+  {
+    "file": "metadata-only-request.json",
+    "schema": "../schemas/review-request.schema.json"
+  },
+  {
+    "file": "job-event-check-registered.json",
+    "schema": "../schemas/job-event.schema.json"
+  },
+  {
+    "file": "job-event-delivery-failed.json",
+    "schema": "../schemas/job-event.schema.json"
+  },
+  {
+    "file": "job-event-retry-finished.json",
+    "schema": "../schemas/job-event.schema.json"
+  },
+  {
+    "file": "report-coordination-reserved.json",
+    "schema": "../schemas/report-coordination.schema.json"
+  },
+  {
+    "file": "report-coordination-saved.json",
+    "schema": "../schemas/report-coordination.schema.json"
+  },
+  {
+    "file": "single-reviewer-history-aggregate-input.json",
+    "schema": "../schemas/aggregate-input.schema.json"
+  },
+  {
+    "file": "single-reviewer-history-aggregate-output.json",
+    "schema": "../schemas/aggregate-output.schema.json"
+  },
+  {
+    "file": "discussion-derived-target-request.json",
+    "schema": "../schemas/review-request.schema.json"
+  },
+  {
+    "file": "discussion-empty-target-request.json",
+    "schema": "../schemas/review-request.schema.json"
+  },
+  {
+    "file": "closed-history-reviewer-input.json",
+    "schema": "../schemas/reviewer-input.schema.json"
+  },
+  {
+    "file": "closed-history-reviewer-output.json",
+    "schema": "../schemas/reviewer-output.schema.json"
+  },
+  {
+    "file": "closed-history-verifier-input.json",
+    "schema": "../schemas/verifier-input.schema.json"
+  },
+  {
+    "file": "closed-history-verifier-output.json",
+    "schema": "../schemas/verifier-output.schema.json"
+  },
+  {
+    "file": "multi-thread-verifier-input.json",
+    "schema": "../schemas/verifier-input.schema.json"
+  },
+  {
+    "file": "multi-thread-verifier-output.json",
+    "schema": "../schemas/verifier-output.schema.json"
+  },
+  {
+    "file": "retained-closure-verifier-input.json",
+    "schema": "../schemas/verifier-input.schema.json"
+  },
+  {
+    "file": "retained-closure-verifier-output.json",
+    "schema": "../schemas/verifier-output.schema.json"
+  },
+  {
+    "file": "job-event-report-storage-failed.json",
+    "schema": "../schemas/job-event.schema.json"
+  },
+  {
+    "file": "job-event-context-changed.json",
+    "schema": "../schemas/job-event.schema.json"
+  },
+  {
+    "file": "context-changed-report.json",
+    "schema": "../schemas/review-report.schema.json"
+  },
+  {
+    "file": "report-coordination-recovering.json",
+    "schema": "../schemas/report-coordination.schema.json"
+  },
+  {
+    "file": "reservation-recovery-finalized.json",
+    "schema": "../schemas/reservation-recovery.schema.json"
+  },
+  {
+    "file": "report-coordination-recovered.json",
+    "schema": "../schemas/report-coordination.schema.json"
+  },
+  {
+    "file": "two-history-verifier-input.json",
+    "schema": "../schemas/verifier-input.schema.json"
+  },
+  {
+    "file": "two-history-verifier-output.json",
+    "schema": "../schemas/verifier-output.schema.json"
+  },
+  {
+    "file": "retained-closure-discussion-request.json",
+    "schema": "../schemas/review-request.schema.json"
+  },
+  {
+    "file": "retained-closure-report.json",
+    "schema": "../schemas/review-report.schema.json"
+  },
+  {
+    "file": "follow-up-verifier-input.json",
+    "schema": "../schemas/verifier-input.schema.json"
+  },
+  {
+    "file": "follow-up-verifier-output.json",
+    "schema": "../schemas/verifier-output.schema.json"
+  },
+  {
+    "file": "review-multi-thread-verifier-input.json",
+    "schema": "../schemas/verifier-input.schema.json"
+  },
+  {
+    "file": "review-multi-thread-verifier-output.json",
+    "schema": "../schemas/verifier-output.schema.json"
+  },
+  {
+    "file": "custom-prompts-history-import-request.json",
+    "schema": "../schemas/review-request.schema.json"
+  },
+  {
+    "file": "custom-prompts-history-import-input.json",
+    "schema": "../schemas/history-import-input.schema.json"
+  },
+  {
+    "file": "import-accounting-empty.json",
+    "schema": "../schemas/import-accounting.schema.json"
+  },
+  {
+    "file": "import-accounting-missed.json",
+    "schema": "../schemas/import-accounting.schema.json"
+  },
+  {
+    "file": "import-accounting-corrected.json",
+    "schema": "../schemas/import-accounting.schema.json"
+  },
+  {
+    "file": "import-omission-reviewer-input.json",
+    "schema": "../schemas/reviewer-input.schema.json"
+  },
+  {
+    "file": "import-omission-reviewer-output.json",
+    "schema": "../schemas/reviewer-output.schema.json"
+  },
+  {
+    "file": "history-import-correction-input.json",
+    "schema": "../schemas/history-import-input.schema.json"
+  },
+  {
+    "file": "history-import-correction-output.json",
+    "schema": "../schemas/history-import-output.schema.json"
+  },
+  {
+    "file": "import-corrected-reviewer-input.json",
+    "schema": "../schemas/reviewer-input.schema.json"
+  },
+  {
+    "file": "import-corrected-reviewer-output.json",
+    "schema": "../schemas/reviewer-output.schema.json"
+  },
+  {
+    "file": "history-import-no-assertion-input.json",
+    "schema": "../schemas/history-import-input.schema.json"
+  },
+  {
+    "file": "history-import-no-assertion-output.json",
+    "schema": "../schemas/history-import-output.schema.json"
+  }
+]

@@ -1,0 +1,52 @@
+{
+  "schema_version": "0.1.0",
+  "summary": "Found one input-handling defect.",
+  "findings": [
+    {
+      "candidate_id": "r1-c1",
+      "title": "Invalid numeric identifiers return a server error.",
+      "body": "An invalid identifier reaches int() without error handling. The resulting ValueError escapes the endpoint and returns HTTP 500 instead of the required HTTP 400.",
+      "severity": "major",
+      "category": "correctness",
+      "relationship": "pr_related",
+      "locations": [
+        {
+          "path": "app/views.py",
+          "start_line": 21,
+          "end_line": 23,
+          "side": "RIGHT",
+          "revision_role": "head"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "code",
+          "explanation": "The new endpoint converts untrusted text with int() without handling ValueError.",
+          "source_ids": [
+            "code-head"
+          ],
+          "location": {
+            "path": "app/views.py",
+            "start_line": 21,
+            "end_line": 23,
+            "side": "RIGHT",
+            "revision_role": "head"
+          },
+          "artifact_id": null
+        }
+      ],
+      "suggestion": null,
+      "primary_location": {
+        "path": "app/views.py",
+        "start_line": 21,
+        "end_line": 23,
+        "side": "RIGHT",
+        "revision_role": "head"
+      },
+      "rule_id": null,
+      "existing_finding_id": null
+    }
+  ],
+  "limitations": [],
+  "quality_control": null
+}

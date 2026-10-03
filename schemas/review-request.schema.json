@@ -1,0 +1,454 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.deltahub.invalid/ai-review/v0.1/review-request.schema.json",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "request_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "review_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "review",
+        "discussion"
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "target": {
+      "$ref": "common.schema.json#/$defs/target"
+    },
+    "context": {
+      "$ref": "common.schema.json#/$defs/context"
+    },
+    "config": {
+      "type": "object",
+      "properties": {
+        "project_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "config_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "setup": {
+          "type": "object",
+          "properties": {
+            "runtime_profile": {
+              "type": "string",
+              "minLength": 1
+            },
+            "python_version": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "install_commands": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 0
+            },
+            "prepare_commands": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 0
+            },
+            "environment_secret_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "common.schema.json#/$defs/secret_ref"
+              },
+              "minItems": 0
+            },
+            "development_resources": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "resource_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "description": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "endpoint": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "isolation": {
+                    "type": "string",
+                    "enum": [
+                      "local",
+                      "per_agent",
+                      "serialized_shared"
+                    ]
+                  }
+                },
+                "required": [
+                  "resource_id",
+                  "description",
+                  "endpoint",
+                  "isolation"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 0
+            }
+          },
+          "required": [
+            "runtime_profile",
+            "python_version",
+            "install_commands",
+            "prepare_commands",
+            "environment_secret_refs",
+            "development_resources"
+          ],
+          "additionalProperties": false
+        },
+        "mandatory_lenses": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/lens"
+          },
+          "minItems": 0
+        },
+        "custom_rules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "rule_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "text": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "rule_id",
+              "text"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 0
+        },
+        "size_exclude_patterns": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "fixture_patterns": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "models": {
+          "type": "object",
+          "properties": {
+            "triage": {
+              "$ref": "common.schema.json#/$defs/model"
+            },
+            "reviewer_choices": {
+              "type": "array",
+              "items": {
+                "$ref": "common.schema.json#/$defs/model"
+              },
+              "minItems": 1
+            },
+            "deduplication": {
+              "$ref": "common.schema.json#/$defs/model"
+            },
+            "verification": {
+              "$ref": "common.schema.json#/$defs/model"
+            },
+            "discussion": {
+              "$ref": "common.schema.json#/$defs/model"
+            },
+            "history_import": {
+              "$ref": "common.schema.json#/$defs/model"
+            }
+          },
+          "required": [
+            "triage",
+            "reviewer_choices",
+            "deduplication",
+            "verification",
+            "discussion",
+            "history_import"
+          ],
+          "additionalProperties": false
+        },
+        "limits": {
+          "$ref": "common.schema.json#/$defs/limits"
+        },
+        "read_scope": {
+          "type": "object",
+          "properties": {
+            "repositories": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 1
+            },
+            "jira_projects": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 1
+            },
+            "web_search": {
+              "type": "string",
+              "enum": [
+                "disabled",
+                "cached",
+                "live"
+              ]
+            },
+            "deltahub_projects": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 1
+            }
+          },
+          "required": [
+            "repositories",
+            "jira_projects",
+            "web_search",
+            "deltahub_projects"
+          ],
+          "additionalProperties": false
+        },
+        "prompt_bundle_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "prompt_customizations": {
+          "type": "object",
+          "properties": {
+            "triage": {
+              "$ref": "common.schema.json#/$defs/prompt_customization"
+            },
+            "reviewer": {
+              "$ref": "common.schema.json#/$defs/prompt_customization"
+            },
+            "deduplication": {
+              "$ref": "common.schema.json#/$defs/prompt_customization"
+            },
+            "verification": {
+              "$ref": "common.schema.json#/$defs/prompt_customization"
+            },
+            "discussion": {
+              "$ref": "common.schema.json#/$defs/prompt_customization"
+            },
+            "history_import": {
+              "$ref": "common.schema.json#/$defs/prompt_customization"
+            }
+          },
+          "additionalProperties": false
+        },
+        "github_command_handle": {
+          "type": "string",
+          "pattern": "^@[A-Za-z0-9][A-Za-z0-9-]*(\\[bot\\])?$"
+        }
+      },
+      "required": [
+        "project_id",
+        "config_version",
+        "setup",
+        "mandatory_lenses",
+        "custom_rules",
+        "size_exclude_patterns",
+        "fixture_patterns",
+        "models",
+        "limits",
+        "read_scope",
+        "prompt_bundle_version",
+        "prompt_customizations",
+        "github_command_handle"
+      ],
+      "additionalProperties": false
+    },
+    "credentials": {
+      "type": "object",
+      "properties": {
+        "codex_account_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "codex_secret_ref": {
+          "$ref": "common.schema.json#/$defs/secret_ref"
+        },
+        "github_installation_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "jira_credential_ref": {
+          "$ref": "common.schema.json#/$defs/secret_ref"
+        },
+        "github_app_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "github_private_key_secret_ref": {
+          "$ref": "common.schema.json#/$defs/secret_ref"
+        },
+        "jira_auth": {
+          "const": "oauth_client_credentials"
+        },
+        "jira_cloud_id": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "codex_account_ref",
+        "codex_secret_ref",
+        "github_installation_id",
+        "github_app_id",
+        "github_private_key_secret_ref",
+        "jira_auth",
+        "jira_cloud_id",
+        "jira_credential_ref"
+      ],
+      "additionalProperties": false
+    },
+    "output_prefix": {
+      "type": "string",
+      "pattern": "^gs://[^/]+/.+"
+    },
+    "baseline_report": {
+      "anyOf": [
+        {
+          "$ref": "common.schema.json#/$defs/artifact"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "discussion": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "previous_report": {
+              "$ref": "common.schema.json#/$defs/artifact"
+            },
+            "expected_report_revision": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "finding_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "common.schema.json#/$defs/finding_id"
+              },
+              "minItems": 0,
+              "uniqueItems": true
+            },
+            "comment_source_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 1
+            }
+          },
+          "required": [
+            "previous_report",
+            "expected_report_revision",
+            "comment_source_ids"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "request_id",
+    "review_id",
+    "mode",
+    "created_at",
+    "target",
+    "context",
+    "config",
+    "credentials",
+    "output_prefix",
+    "baseline_report",
+    "discussion"
+  ],
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "mode": {
+            "const": "discussion"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "discussion": {
+            "type": "object"
+          },
+          "baseline_report": {
+            "type": "null"
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "discussion": {
+            "type": "null"
+          }
+        }
+      }
+    }
+  ]
+}

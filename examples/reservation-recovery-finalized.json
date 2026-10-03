@@ -1,0 +1,63 @@
+{
+  "schema_version": "0.1.0",
+  "review_id": "review-1",
+  "claim": {
+    "recovery_id": "recovery-1",
+    "recovery_job_id": "job-discussion-new",
+    "recovery_execution_id": "cloud-run-discussion-new",
+    "authorization": {
+      "artifact_id": "deltahub-recovery-authorization",
+      "kind": "checkpoint",
+      "uri": "gs://example-private-review/artifacts/deltahub-recovery-authorization.json",
+      "generation": "1",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "content_type": "application/json"
+    },
+    "terminal_evidence": {
+      "artifact_id": "cloud-run-terminal-stop",
+      "kind": "checkpoint",
+      "uri": "gs://example-private-review/artifacts/cloud-run-terminal-stop.json",
+      "generation": "1",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "content_type": "application/json"
+    },
+    "claimed_at": "2026-10-01T12:10:00Z",
+    "predecessor_execution_id": "cloud-run-discussion-stopped",
+    "predecessor_terminal_state": "stopped"
+  },
+  "abandoned_reservation": {
+    "reservation_id": "review-1-reservation-2",
+    "request_id": "request-discussion-stopped",
+    "job_id": "job-discussion-stopped",
+    "execution_id": "cloud-run-discussion-stopped",
+    "report_revision": 2,
+    "expected_report_revision": 1,
+    "report_uri": "gs://example-private-review/review-1/reports/2.json"
+  },
+  "status": "finalized",
+  "publication_checkpoint": {
+    "artifact_id": "abandoned-publication-reconciled",
+    "kind": "checkpoint",
+    "uri": "gs://example-private-review/artifacts/abandoned-publication-reconciled.json",
+    "generation": "1",
+    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "content_type": "application/json"
+  },
+  "terminal_report": {
+    "artifact_id": "abandoned-terminal-report",
+    "kind": "report",
+    "uri": "gs://example-private-review/artifacts/abandoned-terminal-report.json",
+    "generation": "1",
+    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "content_type": "application/json"
+  },
+  "last_completed_report": {
+    "artifact_id": "report-1",
+    "kind": "report",
+    "uri": "gs://example-private-review/review-1/reports/1.json",
+    "generation": "1",
+    "sha256": "37f89801f6dd18ad5f1bd06807567115681b24998dc17b86f0f1eb44d95c4fd9",
+    "content_type": "application/json"
+  },
+  "reason": "Authorized cleanup after a known stop; no agents or unfinished publication resumed."
+}

@@ -1,0 +1,580 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.deltahub.invalid/ai-review/v0.1/job-event.schema.json",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "event_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "job_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "request_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "review_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "attempt_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sequence": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "occurred_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "started",
+        "stage_started",
+        "stage_completed",
+        "waiting_for_quota",
+        "stage_failed",
+        "review_completed",
+        "delivery_failed",
+        "finished",
+        "failed",
+        "stopped",
+        "check_registered",
+        "authoritative_context_changed"
+      ]
+    },
+    "stage_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1
+    },
+    "expected_report_revision": {
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "report": {
+      "anyOf": [
+        {
+          "$ref": "review-report.schema.json"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "report_artifact": {
+      "anyOf": [
+        {
+          "$ref": "common.schema.json#/$defs/artifact"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "failure": {
+      "anyOf": [
+        {
+          "$ref": "common.schema.json#/$defs/failure"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "execution_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "quota_wait": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "reset_at": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "waited_seconds": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "remaining_seconds": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "reset_at",
+            "waited_seconds",
+            "remaining_seconds"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "job_lineage": {
+      "$ref": "common.schema.json#/$defs/job_lineage"
+    },
+    "checkpoint": {
+      "anyOf": [
+        {
+          "$ref": "common.schema.json#/$defs/artifact"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "stop": {
+      "anyOf": [
+        {
+          "$ref": "common.schema.json#/$defs/stop"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "check": {
+      "anyOf": [
+        {
+          "$ref": "common.schema.json#/$defs/check_identity"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "context_change": {
+      "anyOf": [
+        {
+          "$ref": "common.schema.json#/$defs/authoritative_context_change"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "event_id",
+    "job_id",
+    "request_id",
+    "review_id",
+    "attempt_id",
+    "sequence",
+    "occurred_at",
+    "kind",
+    "stage_id",
+    "message",
+    "expected_report_revision",
+    "report",
+    "report_artifact",
+    "failure",
+    "execution_id",
+    "quota_wait",
+    "job_lineage",
+    "checkpoint",
+    "stop",
+    "check",
+    "context_change"
+  ],
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "enum": [
+              "stage_started",
+              "stage_completed",
+              "stage_failed"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "stage_id": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "finished"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "report": {
+            "type": "object",
+            "properties": {
+              "review_status": {
+                "const": "completed"
+              }
+            }
+          },
+          "report_artifact": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "enum": [
+              "failed",
+              "stage_failed",
+              "delivery_failed"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "failure": {
+            "type": "object"
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "failure": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "waiting_for_quota"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "quota_wait": {
+            "type": "object"
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "quota_wait": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "finished"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "report": {
+            "properties": {
+              "publication": {
+                "properties": {
+                  "status": {
+                    "const": "complete"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "failed"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "report": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "review_status": {
+                    "const": "failed"
+                  },
+                  "verdict": {
+                    "type": "null"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "review_completed"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "checkpoint": {
+            "type": "object"
+          },
+          "report": {
+            "type": "null"
+          },
+          "report_artifact": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "stopped"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "stop": {
+            "type": "object"
+          },
+          "report": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "execution_status": {
+                    "const": "stopped"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "stop": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "finished"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "report": {
+            "properties": {
+              "execution_status": {
+                "const": "completed"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "report": {
+            "type": "null"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "report_artifact": {
+            "type": "null"
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "report_artifact": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "check_registered"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "check": {
+            "type": "object"
+          },
+          "checkpoint": {
+            "type": "object"
+          },
+          "report": {
+            "type": "null"
+          },
+          "report_artifact": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "delivery_failed"
+          }
+        }
+      },
+      "then": {
+        "anyOf": [
+          {
+            "properties": {
+              "report": {
+                "type": "object",
+                "properties": {
+                  "review_status": {
+                    "const": "completed"
+                  }
+                }
+              },
+              "report_artifact": {
+                "type": "object"
+              }
+            }
+          },
+          {
+            "properties": {
+              "report": {
+                "type": "null"
+              },
+              "report_artifact": {
+                "type": "null"
+              },
+              "checkpoint": {
+                "type": "object"
+              },
+              "failure": {
+                "properties": {
+                  "code": {
+                    "const": "artifact_io_failed"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "authoritative_context_changed"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "context_change": {
+            "type": "object"
+          },
+          "checkpoint": {
+            "type": "object"
+          },
+          "report": {
+            "type": "null"
+          },
+          "report_artifact": {
+            "type": "null"
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "context_change": {
+            "type": "null"
+          }
+        }
+      }
+    }
+  ]
+}

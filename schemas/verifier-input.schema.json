@@ -1,0 +1,241 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.deltahub.invalid/ai-review/v0.1/verifier-input.schema.json",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "target": {
+      "allOf": [
+        {
+          "$ref": "common.schema.json#/$defs/target"
+        },
+        {
+          "required": [
+            "merge_base_sha"
+          ]
+        }
+      ]
+    },
+    "review_context": {
+      "$ref": "common.schema.json#/$defs/review_context"
+    },
+    "context": {
+      "$ref": "common.schema.json#/$defs/context"
+    },
+    "mandatory_lenses": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/lens"
+      },
+      "minItems": 0
+    },
+    "custom_rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "rule_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "rule_id",
+          "text"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 0
+    },
+    "fixture_patterns": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 0
+    },
+    "prompt": {
+      "$ref": "common.schema.json#/$defs/resolved_prompt"
+    },
+    "tool_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "history_ledger": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/history_ledger_item"
+      },
+      "minItems": 0
+    },
+    "artifact_manifest": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/artifact"
+      },
+      "minItems": 0
+    },
+    "workspace": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "workspace_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "path": {
+              "type": "string",
+              "minLength": 1
+            },
+            "setup_status": {
+              "type": "string",
+              "enum": [
+                "ready",
+                "source_only"
+              ]
+            },
+            "limitations": {
+              "type": "array",
+              "items": {
+                "$ref": "common.schema.json#/$defs/limitation"
+              },
+              "minItems": 0
+            }
+          },
+          "required": [
+            "workspace_id",
+            "path",
+            "setup_status",
+            "limitations"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "stage": {
+      "const": "verifier"
+    },
+    "candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "candidate_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "finding": {
+            "$ref": "common.schema.json#/$defs/finding"
+          },
+          "source_input_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1
+          }
+        },
+        "required": [
+          "candidate_id",
+          "finding",
+          "source_input_ids"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "source_candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "input_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "finding": {
+            "$ref": "common.schema.json#/$defs/finding"
+          }
+        },
+        "required": [
+          "input_id",
+          "finding"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "proposed_reassessments": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/proposed_reassessment"
+      },
+      "description": "Provisional discussion investigation results. Empty in review mode, which supplies reviewer evidence and authenticated rebuttals instead."
+    },
+    "purpose": {
+      "type": "string",
+      "enum": [
+        "review",
+        "discussion"
+      ]
+    },
+    "assessment_bindings": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/assessment_binding"
+      }
+    },
+    "final_reply_targets": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/reply_target"
+      },
+      "description": "Worker-owned required AI conversation targets in both review and discussion mode; each target needs exactly one final verifier reply."
+    },
+    "closed_finding_decisions": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/closure_review_decision"
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "target",
+    "review_context",
+    "context",
+    "mandatory_lenses",
+    "custom_rules",
+    "fixture_patterns",
+    "prompt",
+    "tool_ids",
+    "history_ledger",
+    "artifact_manifest",
+    "workspace",
+    "stage",
+    "candidates",
+    "source_candidates",
+    "proposed_reassessments",
+    "purpose",
+    "assessment_bindings",
+    "final_reply_targets",
+    "closed_finding_decisions"
+  ],
+  "additionalProperties": false
+}

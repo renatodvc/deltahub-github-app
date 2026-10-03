@@ -1,0 +1,11 @@
+{
+  "schema_version": "0.1.0",
+  "job_id": "job-1",
+  "request_id": "request-1",
+  "job_lineage": {
+    "original_job_id": "job-1",
+    "retry_of_job_id": null
+  },
+  "payload_uri": "gs://example-private-review/inputs/request-1.json",
+  "payload_generation": "1"
+}

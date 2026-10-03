@@ -1,0 +1,59 @@
+{
+  "schema_version": "0.1.0",
+  "assessments": [
+    {
+      "candidate_id": "c1",
+      "status": "valid",
+      "reason": "The conversion exception escapes the handler in the reviewed source.",
+      "evidence": [
+        {
+          "kind": "code",
+          "explanation": "The new endpoint converts untrusted text with int() without handling ValueError.",
+          "source_ids": [
+            "code-head"
+          ],
+          "location": {
+            "path": "app/views.py",
+            "start_line": 21,
+            "end_line": 23,
+            "side": "RIGHT",
+            "revision_role": "head"
+          },
+          "artifact_id": null
+        }
+      ],
+      "missing_evidence": [],
+      "resolution_needed": null,
+      "suggestion_assessment": "not_provided",
+      "invalid_reason": null
+    },
+    {
+      "candidate_id": "current-c2",
+      "status": "invalid",
+      "reason": "The second assertion is refuted by the reviewed code.",
+      "evidence": [
+        {
+          "kind": "code",
+          "explanation": "The new endpoint converts untrusted text with int() without handling ValueError.",
+          "source_ids": [
+            "code-head"
+          ],
+          "location": {
+            "path": "app/views.py",
+            "start_line": 21,
+            "end_line": 23,
+            "side": "RIGHT",
+            "revision_role": "head"
+          },
+          "artifact_id": null
+        }
+      ],
+      "missing_evidence": [],
+      "resolution_needed": null,
+      "suggestion_assessment": "not_provided",
+      "invalid_reason": "refuted"
+    }
+  ],
+  "final_replies": [],
+  "closure_assessments": []
+}

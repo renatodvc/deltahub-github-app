@@ -1,0 +1,163 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.deltahub.invalid/ai-review/v0.1/triage-input.schema.json",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "target": {
+      "allOf": [
+        {
+          "$ref": "common.schema.json#/$defs/target"
+        },
+        {
+          "required": [
+            "merge_base_sha"
+          ]
+        }
+      ]
+    },
+    "review_context": {
+      "$ref": "common.schema.json#/$defs/review_context"
+    },
+    "context": {
+      "$ref": "common.schema.json#/$defs/context"
+    },
+    "mandatory_lenses": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/lens"
+      },
+      "minItems": 0
+    },
+    "custom_rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "rule_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "rule_id",
+          "text"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 0
+    },
+    "fixture_patterns": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 0
+    },
+    "prompt": {
+      "$ref": "common.schema.json#/$defs/resolved_prompt"
+    },
+    "tool_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "history_ledger": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/history_ledger_item"
+      },
+      "minItems": 0
+    },
+    "artifact_manifest": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/artifact"
+      },
+      "minItems": 0
+    },
+    "workspace": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "workspace_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "path": {
+              "type": "string",
+              "minLength": 1
+            },
+            "setup_status": {
+              "type": "string",
+              "enum": [
+                "ready",
+                "source_only"
+              ]
+            },
+            "limitations": {
+              "type": "array",
+              "items": {
+                "$ref": "common.schema.json#/$defs/limitation"
+              },
+              "minItems": 0
+            }
+          },
+          "required": [
+            "workspace_id",
+            "path",
+            "setup_status",
+            "limitations"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "stage": {
+      "const": "triage"
+    },
+    "reviewer_choices": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/model"
+      },
+      "minItems": 1
+    },
+    "max_reviewers": {
+      "type": "integer",
+      "minimum": 1
+    }
+  },
+  "required": [
+    "schema_version",
+    "target",
+    "review_context",
+    "context",
+    "mandatory_lenses",
+    "custom_rules",
+    "fixture_patterns",
+    "prompt",
+    "tool_ids",
+    "history_ledger",
+    "artifact_manifest",
+    "workspace",
+    "stage",
+    "reviewer_choices",
+    "max_reviewers"
+  ],
+  "additionalProperties": false
+}

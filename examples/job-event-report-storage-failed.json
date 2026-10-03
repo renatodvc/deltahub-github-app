@@ -1,0 +1,50 @@
+{
+  "schema_version": "0.1.0",
+  "event_id": "event-report-storage-failed",
+  "job_id": "job-1",
+  "request_id": "request-1",
+  "review_id": "review-1",
+  "execution_id": "cloud-run-execution-1",
+  "attempt_id": "attempt-1",
+  "sequence": 10,
+  "occurred_at": "2026-10-01T12:05:00Z",
+  "kind": "delivery_failed",
+  "stage_id": "compose",
+  "message": "Delivery failed after completed computation.",
+  "expected_report_revision": null,
+  "report": null,
+  "report_artifact": null,
+  "failure": {
+    "code": "artifact_io_failed",
+    "stage_id": "github_delivery",
+    "message": "Computation completed, but final report upload failed.",
+    "retryable": true,
+    "retry_not_before": null,
+    "retained_artifacts": [
+      {
+        "artifact_id": "computation",
+        "kind": "checkpoint",
+        "uri": "gs://example-private-review/review-1/jobs/job-1/computation.json",
+        "generation": "1",
+        "sha256": "3333333333333333333333333333333333333333333333333333333333333333",
+        "content_type": "application/json"
+      }
+    ]
+  },
+  "quota_wait": null,
+  "job_lineage": {
+    "original_job_id": "job-1",
+    "retry_of_job_id": null
+  },
+  "checkpoint": {
+    "artifact_id": "computation",
+    "kind": "checkpoint",
+    "uri": "gs://example-private-review/review-1/jobs/job-1/computation.json",
+    "generation": "1",
+    "sha256": "3333333333333333333333333333333333333333333333333333333333333333",
+    "content_type": "application/json"
+  },
+  "stop": null,
+  "check": null,
+  "context_change": null
+}

@@ -1,0 +1,43 @@
+{
+  "schema_version": "0.1.0",
+  "event_id": "event-failed-11",
+  "job_id": "job-1",
+  "request_id": "request-1",
+  "review_id": "review-1",
+  "execution_id": "cloud-run-execution-1",
+  "attempt_id": "attempt-1",
+  "sequence": 11,
+  "occurred_at": "2026-10-01T12:05:00Z",
+  "kind": "failed",
+  "stage_id": "r2",
+  "message": "Required reviewer attempts exhausted; completed work retained.",
+  "expected_report_revision": null,
+  "report": null,
+  "report_artifact": null,
+  "failure": {
+    "code": "stage_attempts_exhausted",
+    "stage_id": "r2",
+    "message": "Required reviewer did not return usable output after three attempts.",
+    "retryable": true,
+    "retry_not_before": null,
+    "retained_artifacts": [
+      {
+        "artifact_id": "r1-output",
+        "kind": "stage_output",
+        "uri": "gs://example-private-review/review-1/stages/r1.json",
+        "generation": "1",
+        "sha256": "bd0833c7a7daeff87ddabf3087dcd156b5ad23e36d4d49815baf2e2567de85f9",
+        "content_type": "application/json"
+      }
+    ]
+  },
+  "quota_wait": null,
+  "job_lineage": {
+    "original_job_id": "job-1",
+    "retry_of_job_id": null
+  },
+  "checkpoint": null,
+  "stop": null,
+  "check": null,
+  "context_change": null
+}

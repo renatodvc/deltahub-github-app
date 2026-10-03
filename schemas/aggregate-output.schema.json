@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.deltahub.invalid/ai-review/v0.1/aggregate-output.schema.json",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "enum": [
+        "0.1.0"
+      ],
+      "type": "string"
+    },
+    "groups": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/candidate_group"
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "groups"
+  ],
+  "additionalProperties": false
+}

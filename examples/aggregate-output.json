@@ -1,0 +1,51 @@
+{
+  "schema_version": "0.1.0",
+  "groups": [
+    {
+      "input_ids": [
+        "raw-r1-1",
+        "raw-r2-1"
+      ],
+      "merge_rationale": "Both findings describe the same uncaught numeric conversion and consequence.",
+      "merged_text": {
+        "title": "Invalid numeric identifiers return a server error.",
+        "body": "An invalid identifier reaches int() without error handling. The resulting ValueError escapes the endpoint and returns HTTP 500 instead of the required HTTP 400.",
+        "severity": "major",
+        "primary_location": {
+          "path": "app/views.py",
+          "start_line": 21,
+          "end_line": 23,
+          "side": "RIGHT",
+          "revision_role": "head"
+        },
+        "locations": [
+          {
+            "path": "app/views.py",
+            "start_line": 21,
+            "end_line": 23,
+            "side": "RIGHT",
+            "revision_role": "head"
+          }
+        ],
+        "evidence": [
+          {
+            "kind": "code",
+            "explanation": "The new endpoint converts untrusted text with int() without handling ValueError.",
+            "source_ids": [
+              "code-head"
+            ],
+            "location": {
+              "path": "app/views.py",
+              "start_line": 21,
+              "end_line": 23,
+              "side": "RIGHT",
+              "revision_role": "head"
+            },
+            "artifact_id": null
+          }
+        ],
+        "suggestion": null
+      }
+    }
+  ]
+}

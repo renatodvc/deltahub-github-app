@@ -1,0 +1,29 @@
+{
+  "schema_version": "0.1.0",
+  "assessments": [
+    {
+      "candidate_id": "c1",
+      "status": "unverifiable",
+      "reason": "The source suggests this path, but an unavailable development-only middleware is needed to determine its handling.",
+      "evidence": [
+        {
+          "kind": "limitation",
+          "explanation": "The configured development middleware could not be installed.",
+          "source_ids": [
+            "code-head"
+          ],
+          "location": null,
+          "artifact_id": null
+        }
+      ],
+      "missing_evidence": [
+        "Whether development middleware maps this ValueError to HTTP 400."
+      ],
+      "resolution_needed": "Provide the middleware implementation or a focused development reproduction.",
+      "suggestion_assessment": "not_provided",
+      "invalid_reason": null
+    }
+  ],
+  "final_replies": [],
+  "closure_assessments": []
+}
